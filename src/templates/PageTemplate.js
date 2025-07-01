@@ -1,4 +1,5 @@
 import { commonHeaderMenuData } from "../data/headerData.js";
+import { commonFooterMenuData } from "../data/footerData.js";
 
 export class PageTemplate {
     constructor(req) {
@@ -12,13 +13,18 @@ export class PageTemplate {
                 <meta charset="UTF-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
                 <title>Express example</title>
-                <link rel="shortcut icon" href="/favicon.ico" />
-                <link rel="icon" type="image/png" href="/favicon/favicon-96x96.png" sizes="96x96" />
-                <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
-                <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
-                <meta name="apple-mobile-web-app-title" content="Coming soon" />
-                <link rel="manifest" href="/favicon/site.webmanifest" />
-                <link rel="stylesheet" href="/css/bootstrap.css">
+      
+                  
+                    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png>
+                    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+                    <link rel="icon" type="image/png" sizes="48x48" href="/favicon/favicon-48x48.png">
+                    <meta name="msapplication-TileImage" content="/mstile-150x150.png">
+                    <meta name="msapplication-TileColor" content="#da532c">
+                    <link rel="shortcut icon" href="/favicon/favicon.ico">
+                    <link rel="manifest" href="/favicon/site.webmanifest">
+                    <meta name="theme-color" content="#ffffff">
+                    <link rel="stylesheet" href="/css/bootstrap.css">
+                    <link rel="stylesheet" href="/css/vendor/font-awesome.min.css">
             </head>`;
     }
 
@@ -58,7 +64,7 @@ export class PageTemplate {
         for (const link of commonHeaderMenuData) {
             HTML += `
                 <li class="nav-item">
-                    <a href="${link.href}" class="nav-link px-2 text-body-secondary">${link.text}</a>
+                    <a href="${link.href}" class="nav-link px-2 text-body-secondary"> ${link.text}</a>
                 </li>`;
         }
 
