@@ -2,7 +2,7 @@
 
 dotenv.config({path:`./.env.example`}); 
 
-console.log(args);
+
 
 import dotenv from 'dotenv';
 
@@ -17,11 +17,24 @@ for (const str of argList) {
     }
 }
 
-dotenv.config({
+const a = dotenv.config({
     path: 'src/.env.' + args.env,
+    quet: true     // ne viska spauszina
+
 });
 
-export const PORT = +process.env.PORT ?? 5517;
+console.log(a);
+
+/*
+export const PORT = +process.env.PORT ?? 5510;
+export const TITLE = process.env.TITLE ?? 'Project title';
+export const DB_DATABASE = process.env.DB_DATABASE ?? 'test_db';
+export const DB_USER = process.env.DB_USER ?? 'test_user';
+export const DB_PASSWORD = process.env.DB_PASSWORD ?? 'test_password';
+*/
+
+
+export const PORT = +process.env.PORT ?? 5520;
 export const TITLE = process.env.TITLE ?? 'Project title';
 export const DB_DATABASE = process.env.DB_DATABASE ?? 'test_db';
 export const DB_USER = process.env.DB_USER ?? 'test_user';
