@@ -1,24 +1,24 @@
 export let categoriesData = [
     {
-        title: 'Pirmas', //animation
+        title: 'Pirmas (ani)', 
         description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum accusantium iste magni? Error omnis sequi nemo sit voluptatem sint dicta repellendus impedit nihil? Non impedit et temporibus cumque facere sequi!',
         moviesCount: 5,
         href: '/1',
     },
     {
-        title: 'Antras', // Crime
+        title: 'Antras (cri)', 
         description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum accusantium iste magni? Error omnis sequi nemo sit voluptatem sint dicta repellendus impedit nihil? Non impedit et temporibus cumque facere sequi!',
         moviesCount: 6,
         href: '/2',
     },
     {
-        title: 'Trečias', // comedy
+        title: 'Trečias (com)', 
         description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum accusantium iste magni? Error omnis sequi nemo sit voluptatem sint dicta repellendus impedit nihil? Non impedit et temporibus cumque facere sequi!',
         moviesCount: 9,
         href: '/3',
     },
     {
-        title: 'Ketvirtas', // scy-fy
+        title: 'Ketvirtas (sky)', 
         description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum accusantium iste magni? Error omnis sequi nemo sit voluptatem sint dicta repellendus impedit nihil? Non impedit et temporibus cumque facere sequi!',
         moviesCount: 13,
         href: '/3',
