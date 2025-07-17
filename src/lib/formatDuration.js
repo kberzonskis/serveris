@@ -1,4 +1,4 @@
-export function formatDuration(minutes = 100) {
+export function formatDuration(minutes = -1) {
     const min = minutes % 60;
     const h = (minutes - min) / 60;
 
@@ -10,7 +10,7 @@ export function formatDuration(minutes = 100) {
         minText += 's';
     }
 
-    let hourText = ''
+    let hourText = '';
     if (h > 0) {
         hourText += h + ' hour';
     }

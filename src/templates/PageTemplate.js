@@ -1,5 +1,4 @@
 import { commonHeaderMenuData } from "../data/headerData.js";
-import { commonFooterMenuData } from "../data/footerData.js";
 
 export class PageTemplate {
     constructor(req) {
@@ -13,18 +12,14 @@ export class PageTemplate {
                 <meta charset="UTF-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
                 <title>Express example</title>
-      
-                  
-                    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png>
-                    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
-                    <link rel="icon" type="image/png" sizes="48x48" href="/favicon/favicon-48x48.png">
-                    <meta name="msapplication-TileImage" content="/mstile-150x150.png">
-                    <meta name="msapplication-TileColor" content="#da532c">
-                    <link rel="shortcut icon" href="/favicon/favicon.ico">
-                    <link rel="manifest" href="/favicon/site.webmanifest">
-                    <meta name="theme-color" content="#ffffff">
-                    <link rel="stylesheet" href="/css/bootstrap.css">
-                    <link rel="stylesheet" href="/css/vendor/font-awesome.min.css">
+                <link rel="shortcut icon" href="/favicon.ico" />
+                <link rel="icon" type="image/png" href="/favicon/favicon-96x96.png" sizes="96x96" />
+                <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
+                <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+                <meta name="apple-mobile-web-app-title" content="Coming soon" />
+                <link rel="manifest" href="/favicon/site.webmanifest" />
+                <link rel="stylesheet" href="/css/bootstrap.css">
+                <link rel="stylesheet" href="/css/custom.css">
             </head>`;
     }
 
@@ -50,11 +45,23 @@ export class PageTemplate {
                         </a>
                     </div>
                     <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">${HTML}</ul>
-                    <div class="col-md-3 text-end">
-                        <a href="/login" class="btn btn-outline-primary me-2">Login</a>
-                        <a href="/register" class="btn btn-primary">Register</a>
-                    </div>
+                    ${this.userMenu()}
                 </header>
+            </div>`;
+    }
+
+    userMenu() {
+        if (this.req.user.isLoggedIn) {
+            return `
+                <div class="col-md-3 text-end">
+                    <a href="/admin" class="btn btn-primary">Dashboard</a>
+                </div>`;
+        }
+
+        return `
+            <div class="col-md-3 text-end">
+                <a href="/login" class="btn btn-outline-primary me-2">Login</a>
+                <a href="/register" class="btn btn-primary">Register</a>
             </div>`;
     }
 
@@ -64,7 +71,7 @@ export class PageTemplate {
         for (const link of commonHeaderMenuData) {
             HTML += `
                 <li class="nav-item">
-                    <a href="${link.href}" class="nav-link px-2 text-body-secondary"> ${link.text}</a>
+                    <a href="${link.href}" class="nav-link px-2 text-body-secondary">${link.text}</a>
                 </li>`;
         }
 
@@ -85,7 +92,7 @@ export class PageTemplate {
         return `<script src="/js/${this.pageJS}.js" type="module"></script>`;
     }
 
-    main() {
+    async main() {
         return `
             <main class="container">
                 <div class="row">
@@ -96,14 +103,14 @@ export class PageTemplate {
             </main>`;
     }
 
-    render() {
+    async render() {
         return `
             <!DOCTYPE html>
             <html lang="en">
             ${this.head()}
             <body>
                 ${this.header()}
-                ${this.main()}
+                ${await this.main()}
                 ${this.footer()}
                 ${this.script()}
             </body>
