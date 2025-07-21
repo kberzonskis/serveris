@@ -35,7 +35,6 @@ export class PageAdminMoviesEdit extends AdminTemplate {
 
         const minutes = movie.duration_in_minutes % 60;
         const hours = (movie.duration_in_minutes - minutes) / 60;
-        console.log(movie);
 
         return `
             <main>

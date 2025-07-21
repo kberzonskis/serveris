@@ -1,4 +1,4 @@
-import { moviesData } from "../../data/moviesData.js";
+import { getAllPublicMovies } from "../../db/public/getAllMovies.js";
 import { PageTemplate } from "../../templates/PageTemplate.js";
 import { moviesFilterForm } from "../../ui/forms/moviesFilterForm.js";
 import { moviesListSection } from "../../ui/moviesList.js";
@@ -10,11 +10,13 @@ export class PageMovies extends PageTemplate {
     }
 
     async main() {
+        const data = await getAllPublicMovies();
+
         return `
             <main>
                 ${pageTitle('Movies')}
                 ${moviesFilterForm()}
-                ${moviesListSection(moviesData)}
+                ${moviesListSection(data)}
             </main>`;
     }
 }
