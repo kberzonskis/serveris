@@ -5,7 +5,7 @@ export function tableMovies(data) {
     let nr = 1;
 
     for (const movie of data) {
-        const img = movie.img ? ('/img/movies/' + movie.img) : '/img/default.png';
+        const img = movie.img === 'default.png' ? '/img/default.png' : ('/img/movies/' + movie.img);
 
         HTML += `
             <tr>

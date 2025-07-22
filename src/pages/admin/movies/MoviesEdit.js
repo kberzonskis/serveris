@@ -36,6 +36,8 @@ export class PageAdminMoviesEdit extends AdminTemplate {
         const minutes = movie.duration_in_minutes % 60;
         const hours = (movie.duration_in_minutes - minutes) / 60;
 
+        const imgPath = movie.img === 'default.png' ? '/img/default.png' : '/img/movies/' + movie.img;
+
         return `
             <main>
                 <div class="container">
@@ -47,6 +49,12 @@ export class PageAdminMoviesEdit extends AdminTemplate {
                 </div>
                 <div class="container">
                     <div class="row">
+                        <form class="col-12 col-md-9 col-lg-6 mb-5">
+                            <img id="img_preview" class="w-100 object-fit-contain" src="${imgPath}" alt="Movie thumbnail">
+                            <p id="img_path">${imgPath}</p>
+                            <input type="file" class="form-control" id="img" name="img">
+                        </form>
+
                         <form class="col-12 col-md-9 col-lg-6">
                             <input value="${movie.url_slug}" type="text" id="original_url" hidden>
                             <div class="mb-3">

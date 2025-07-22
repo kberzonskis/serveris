@@ -1,4 +1,9 @@
-const formDOM = document.forms[0];
+const movieImageFormDOM = document.forms[0];
+const imageDOM = document.getElementById('img');
+const imagePreviewDOM = document.getElementById('img_preview');
+const imagePathDOM = document.getElementById('img_path');
+
+const movieDetailsFormDOM = document.forms[1];
 const originalUrlDOM = document.getElementById('original_url');
 const titleDOM = document.getElementById('title');
 const urlDOM = document.getElementById('url');
@@ -11,8 +16,28 @@ const ratingDOM = document.getElementById('rating');
 const statusPublishedDOM = document.getElementById('status_published');
 const statusDraftDOM = document.getElementById('status_draft');
 
-if (formDOM) {
-    formDOM.addEventListener('submit', (e) => {
+if (movieImageFormDOM) {
+    imageDOM.addEventListener('change', () => {
+        const formData = new FormData();
+        formData.append("img", imageDOM.files[0]);
+
+        fetch('/api/admin/upload-image', {
+            method: 'POST',
+            body: formData,
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    imagePreviewDOM.src = data.msg;
+                    imagePathDOM.textContent = data.msg;
+                }
+            })
+            .catch(console.error);
+    });
+}
+
+if (movieDetailsFormDOM) {
+    movieDetailsFormDOM.addEventListener('submit', (e) => {
         e.preventDefault();
 
         const data = {
@@ -20,6 +45,7 @@ if (formDOM) {
             url: urlDOM.value,
             category: +categoryDOM.value,
             status: '',
+            img: imagePathDOM.textContent,
         };
 
         if (descriptionDOM.value) {

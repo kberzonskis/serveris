@@ -11,11 +11,12 @@ export class PageMovies extends PageTemplate {
 
     async main() {
         const data = await getAllPublicMovies();
+        console.log(this.req.query);
 
         return `
             <main>
                 ${pageTitle('Movies')}
-                ${moviesFilterForm()}
+                ${await moviesFilterForm(this.req.query)}
                 ${moviesListSection(data)}
             </main>`;
     }
